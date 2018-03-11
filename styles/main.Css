@@ -1,5 +1,22 @@
 body {
 	text-align: center;
+	color: #333;
+    font-size: 18px;
+}
+
+.header {
+	background-color: #466995;
+    border-bottom: 1px solid #466995;
+    width: 100%;
+    z-index: 10;
+	padding: 10px;
+}
+
+h1, h2 {
+	font-family: 'Oswald', sans-serif;
+	color: #FFF;
+    display: block;
+	
 }
 
 li {

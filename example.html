@@ -10,30 +10,24 @@
 </head>
 
 <body>
-  <h1>Welcome to my blind test !</h1>
-  <h2>Could you recognize the different sounds I will play for you ?</h2>
-  <button id="ready" onclick="printQuestion()">I'm ready</button><br><br><br>
+  <div class="header">
+    <h1>Welcome to my blind test !</h1>
+    <h2>Could you recognize the different sounds I will play for you ?</h2>
+    <button id="ready">I'm ready</button><br><br><br>
+  </div>
   <ul id="question">
     <audio id="control" controls>
-	    <source id="soundtrack" src="3.mp3" type="audio/mpeg">
+	    <source id="soundtrack" src="" type="audio/mpeg">
     Your browser does not support the audio element.
     </audio>
     <br><br><br>
-    <li id="1.mp3" onclick=selectResponse(this);>
-		Harder
-	</li>
-	<li id="2.mp3" onclick=selectResponse(this);>
-		Better
-	</li>
-	<li id="3.mp3" onclick=selectResponse(this);>
-		Faster
-	</li>
-	<li id="4.mp3" onclick=selectResponse(this);>
-		Stronger
-	</li>
+    <li id="0" onclick=selectResponse(this);></li>
+	<li id="1" onclick=selectResponse(this);></li>
+	<li id="2" onclick=selectResponse(this);></li>
+	<li id="3" onclick=selectResponse(this);></li>
   </ul>
   <div id="next">
-    <button onclick="nextQuestion()">Next question</button>
+    <button class="nextButton">Next question</button>
   </div>
 </body>
 

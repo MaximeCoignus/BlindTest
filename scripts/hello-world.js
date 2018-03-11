@@ -1,7 +1,25 @@
-var sounds = ["1.mp3", "2.mp3", "3.mp3", "4.mp3"];
+var sounds = [{
+	id : 1,
+	src: "Harder"
+	},
+	{
+	id : 2,
+	src: "Better"
+	}, 
+	{
+	id : 3,
+	src: "Faster"
+	}, 
+	{
+	id : 4,
+	src: "Stronger"
+	}
+];
 
 function selectResponse(response) {
-	if (response.getAttribute("id") === getSoundtrack()) {
+	console.log("response.innerText = " + response.innerText);
+	console.log("getSoundtrack() = " + getSoundtrack());
+	if (response.innerText.toLowerCase() == getSoundtrack().toLowerCase()) {
 		validResponse();
 	} else {
 		wrongResponse();
@@ -13,9 +31,7 @@ function validResponse() {
 	$('p').remove();
 	$('#return').remove();
 	var valid = document.createElement('p');
-	console.log(valid);
 	var next = document.getElementById('next');
-	console.log(next);
 	valid.textContent = 'Well done!';
 	valid.setAttribute("style", "background-color: green;");
 	next.setAttribute("style", "display: inline;");
@@ -37,24 +53,64 @@ function wrongResponse() {
 function nextQuestion() {
 	var next = document.getElementById('next');
 	next.setAttribute("style", "display: none;");
-	$('p').remove();
-	changeSoundtrack();
+	changeQuestion();
 }
 
 function getSoundtrack() {
-	return document.getElementById("soundtrack").getAttribute("src");
+	return document.getElementById("soundtrack").getAttribute("class");
 }
 
-function printQuestion() {
-	var question = document.getElementById("question");
-	question.style.display = "block";
-	changeSoundtrack();
-}
+// function printQuestion() {
+	// var question = document.getElementById("question");
+	// question.style.display = "block";
+	// changeQuestion();
+// }
+
+$("#ready").click(function() {
+	$("#question").show(500);
+	$("#ready").hide();
+	changeQuestion();
+});
 
 function changeSoundtrack() {
 	var index = Math.floor(Math.random() * sounds.length);
 	var soundtrack = document.getElementById('soundtrack');
 	var control = document.getElementById('control');
-	soundtrack.setAttribute("src", sounds[index]);
+	console.log("sounds : " + sounds);
+	console.log("index : " + index);
+    console.log("sounds[index] : " + sounds[index].src);
+	soundtrack.setAttribute("src", sounds[index].src + ".mp3");
+	soundtrack.setAttribute("class", sounds[index].src);
 	control.load();
 }
+
+function moveToNextQuestion() {
+	var responses = sounds.slice();
+	var answers = [];
+	
+	while(responses.length > 0) {
+		var index = Math.floor(Math.random() * responses.length);
+		console.log(responses[index].src);
+		answers.push(responses[index]);
+		responses.splice(index, 1);
+	}
+	
+	console.log(answers);
+	for (var i = 0; i < answers.length; i++) {
+		console.log(answers[i].src);
+		document.getElementById(i).innerText = answers[i].src;
+	}
+}
+
+function changeQuestion() {
+	changeSoundtrack();
+	moveToNextQuestion();
+}
+
+$(".nextButton").click(function() {
+	$("#question").hide(500);
+	$('#next').hide(500);
+	$('p').remove();
+	changeQuestion();
+	$("#question").show(500);
+});
