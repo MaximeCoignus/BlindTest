@@ -1,0 +1,34 @@
+<html>
+
+<head>
+  <title></title>
+  <link href="styles/style.css" rel="stylesheet" type="text/css" />
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+  <script src="scripts/script.js" defer></script>
+  <!-- Use defer -->
+</head>
+
+<body>
+  <div class="header">
+    <h1>Welcome to my blind test !</h1>
+    <h2>Could you recognize the different sounds I will play for you ?</h2>
+    <button id="ready">I'm ready</button><br><br><br>
+  </div>
+  <ul id="question">
+    <audio id="control" controls>
+	    <source id="soundtrack" src="" type="audio/mpeg">
+    Your browser does not support the audio element.
+    </audio>
+    <br><br><br>
+    <li id="0" onclick=selectResponse(this);></li>
+	<li id="1" onclick=selectResponse(this);></li>
+	<li id="2" onclick=selectResponse(this);></li>
+	<li id="3" onclick=selectResponse(this);></li>
+  </ul>
+  <div id="next">
+    <button class="nextButton">Next question</button>
+  </div>
+</body>
+
+</html>
